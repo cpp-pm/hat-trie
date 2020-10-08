@@ -8,11 +8,11 @@ project(tsl_hat_trie LANGUAGES CXX VERSION 0.6.0)
 # * CMAKE_INSTALL_INCLUDEDIR
 include(GNUInstallDirs)
 
-add_library(tsl_hat_trie INTERFACE)
+add_library(hat_trie INTERFACE)
 # Use tsl::hat_trie as target, more consistent with other libraries conventions (Boost, Qt, ...)
-add_library(tsl::hat_trie ALIAS tsl_hat_trie)
+add_library(tsl::hat_trie ALIAS hat_trie)
 
-target_include_directories(tsl_hat_trie INTERFACE
+target_include_directories(hat_trie INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 set(TSL_HAT_TRIE_HDR_LIST
@@ -24,12 +24,10 @@ set(TSL_HAT_TRIE_HDR_LIST
     "${CMAKE_CURRENT_SOURCE_DIR}/include/tsl/htrie_map.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/tsl/htrie_set.h"
 )
-target_sources(tsl_hat_trie INTERFACE)
-
 
 #if(${CMAKE_VERSION} VERSION_GREATER "3.7")
     # Only available since version 3.8
-    #target_compile_features(tsl_hat_trie INTERFACE cxx_std_11)
+    #target_compile_features(hat_trie INTERFACE cxx_std_11)
 #endif()
 
 set(GENERATED_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
@@ -39,7 +37,7 @@ set(PROJECT_CONFIG "${GENERATED_DIR}/${PROJECT_NAME}Config.cmake")
 set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
 
 set(TARGETS_EXPORT_NAME "${PROJECT_NAME}Targets")
-set(NAMESPACE "${PROJECT_NAME}::")
+set(NAMESPACE "tsl::")
 
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
@@ -53,7 +51,7 @@ configure_package_config_file(
 )
 
 install(
-    TARGETS tsl_hat_trie
+    TARGETS hat_trie
     EXPORT "${TARGETS_EXPORT_NAME}"
     PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
     RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"

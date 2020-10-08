@@ -17,9 +17,9 @@ check_required_components("@PROJECT_NAME@")
 
 if(NOT TARGET ZLIB::ZLIB)
   set_target_properties(
-      tsl_hat_trie
+      tsl::hat_trie
       PROPERTIES
       IMPORTED_GLOBAL True
   )
-  add_library(tsl::hat_trie ALIAS tsl_hat_trie)
+  add_library(tsl_hat_trie ALIAS tsl::hat_trie)
 endif()
