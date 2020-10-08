@@ -14,3 +14,12 @@
 
 include("${CMAKE_CURRENT_LIST_DIR}/@TARGETS_EXPORT_NAME@.cmake")
 check_required_components("@PROJECT_NAME@")
+
+if(NOT TARGET ZLIB::ZLIB)
+  set_target_properties(
+      tsl_hat_trie
+      PROPERTIES
+      IMPORTED_GLOBAL True
+  )
+  add_library(tsl::hat_trie ALIAS tsl_hat_trie)
+endif()
